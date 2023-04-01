@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <h6>Account Summary for {{ username }}</h6>
+    <hr>
+    <div class="section">
+        <table class="table-w-style">
+            <thead>
+                <tr>
+                    <th>Income</th>
+                    <th>Fixed Costs</th>
+                    <th>Variable Costs</th>
+                    <th>Balance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> ${{ income }}</td>
+                    <td> ${{ fixCosts }}</td>
+                    <td> ${{ varCosts }}</td>
+                    <td> ${{ balance }} </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+
+    </script>
+{% endblock %}

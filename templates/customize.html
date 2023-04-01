@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add Pay Methods
+{% endblock %}
+
+{% block main %}
+    <h6>Customize Payment Methods Below For {{ username }}:</h6>
+
+    <form action="/customize" method="post" class="form-purchase-inputs">
+        <hr>
+        <div class="mb-3">
+            <p style="margin:auto">Enter Payment Methods Below:</p>
+            <textarea id="method" name="method" placeholder="Separate each with a newline" rows="8" cols="30"></textarea>
+        </div>
+
+        <button class="btn btn-success" type="submit">Add Methods</button>
+        <button class="btn btn-danger" id="remove" disabled type="submit" onclick="document.getElementById('removeClicked').setAttribute('value', 1)">Remove</button>
+        <input type ="hidden" id="deleteInput" name="deleteInput">
+        <input type="hidden" id="removeClicked" name="removeClicked">
+        <br><br>
+
+        <table class="table-w-style">
+            <thead>
+                <tr>
+                    <th>Current Payment Methods</th>
+                    <th>Remove Payment Method?</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in payMethDicts %}
+                        <tr>
+                            <td> {{ item["payMeth"] }}</td>
+                            <td><input type="checkbox" id="income" name="payMeth" value="0" onclick="setValue(this)">
+                            </td>
+                        </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <br>
+    </form>
+
+    <script>
+        function setValue(item)
+        {
+            document.getElementById('deleteInput').setAttribute('value', 0)
+            if (item.value == 0)
+                item.setAttribute('value', 1);
+            else
+                item.setAttribute('value', 0);
+
+            let checkboxList = document.querySelectorAll("input");
+            let checkboxArray = Array.from(checkboxList);
+            let deleteArray = [];
+
+            for (let i = 0; i < checkboxArray.length; i++) {
+                //console.log(checkboxArray[i].value)
+                deleteArray[i] = checkboxArray[i].value;
+                console.log(deleteArray[i]);
+            }
+
+            //document.getElementById('deleteInput').setAttribute('value', 0)
+            document.getElementById('deleteInput').setAttribute('value', deleteArray)
+            document.getElementById('remove').disabled = false;//allowing remove button to be clicked
+
+            //turns off remove button if nothing is selected
+            let checker = (currentVal) => currentVal == 0;
+            if (deleteArray.every(checker)){
+                document.getElementById('remove').disabled = true;
+            }
+        }
+    </script>
+{% endblock %}

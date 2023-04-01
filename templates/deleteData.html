@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Clear Data
+{% endblock %}
+
+{% block main %}
+    <h6>Please Select Which Data to Reset for {{ username }}:</h6>
+    <hr>
+    <p>Note: It is important that you export the data prior to deletion if you'd like a copy.<br>
+    Once deleted, the data is no longer recoverable.<br>
+    It is recommended this is done once per month.</p>
+    <div class="mb-3">
+        <form action="/deleteData" method="post">
+            <input type="checkbox" id="spending" name="spending" value="0" onclick="this.setAttribute('value', 1)">
+            <label for="spending"> Spending </label><br>
+
+            <input type="checkbox" id="fixed" name="fixed" value="0" onclick="this.setAttribute('value', 1)">
+            <label for="fixed"> Bills </label><br>
+
+            <input type="checkbox" id="income" name="income" value="0" onclick="this.setAttribute('value', 1)">
+            <label for="income"> Income </label><br>
+
+            <input type="checkbox" id="payMethods" name="payMethods" value="0" onclick="this.setAttribute('value', 1)">
+            <label for="income"> Payment Methods </label><br>
+
+            <br>
+            <button class="btn btn-danger" type="submit" name="submit" onclick="alert('Are you sure?')">Reset</button>
+        </form>
+    </div>
+    <hr>
+    <p>To export all data to excel files and email to {{ email }}, click below:</p>
+    <form action="/export" method="post">
+        <button class="btn btn-success" type="submit" name="submit" onclick="alert('Data exported as excel files & Sent to email on record')">Export</button>
+    </form>
+    <script>
+
+    </script>
+{% endblock %}

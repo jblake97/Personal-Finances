@@ -1,0 +1,111 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Fixed Costs
+{% endblock %}
+
+{% block main %}
+    <h6>Enter Fixed Monthly Costs Below:</h6>
+    <hr>
+
+    <form action="/addFixedCosts" method="post" class="form-purchase-inputs">
+        <br>
+        <div class="mb-3">
+            <label for="amount">Enter Amount:</label>
+            <input autocomplete="off" autofocus id="amount" name="amount" placeholder="$ Amount" type="text" size="10">
+        </div>
+        <div class="mb-3">
+            <label for="description">Enter Description:</label>
+            <input id="description" name="description" placeholder="Description" type="text">
+        </div>
+
+        <button class="btn btn-success" type="submit" id="submit" onclick="roundAmount()">Submit</button>
+        <button class="btn btn-danger" type="submit" id="remove" onclick="document.getElementById('removeClicked').setAttribute('value', 1)" disabled>Remove</button>
+        <input type ="hidden" id="deleteInput" name="deleteInput">
+        <input type="hidden" id="removeClicked" name="removeClicked">
+        <br><br>
+        <table class="table-w-style">
+            <thead>
+                <tr>
+                    <th>($) Amount</th>
+                    <th>Source</th>
+                    <th>Delete?</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fixCosts in fixCostsDicts %}
+                        <tr>
+                            <td> ${{ fixCosts["amount"] }}</td>
+                            <td> {{ fixCosts["source"] }}</td>
+                            <td><input type="checkbox" class="checkboxes" id="fixCost" name="fixCost" value="0" onclick="setValue(this)">
+                        </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <p>Total: ${{ total }}</p>
+    </form>
+
+    <script>
+        function setValue(item)//necessary for delete function to work
+        {
+            document.getElementById('deleteInput').setAttribute('value', 0)
+            if (item.value == 0)
+                item.setAttribute('value', 1);
+            else
+                item.setAttribute('value', 0);
+
+            let checkboxList = document.querySelectorAll(".checkboxes");
+            let checkboxArray = Array.from(checkboxList);
+            let deleteArray = [];
+
+            for (let i = 0; i < checkboxArray.length; i++) {
+                //console.log(checkboxArray[i].value)
+                deleteArray[i] = checkboxArray[i].value;
+                console.log(deleteArray[i]);
+            }
+
+            document.getElementById('deleteInput').setAttribute('value', deleteArray)
+
+            document.getElementById('remove').disabled = false;//allowing remove button to be clicked
+
+            //turns off remove button if nothing is selected
+            let checker = (currentVal) => currentVal == 0;
+            if (deleteArray.every(checker)){
+                document.getElementById('remove').disabled = true;
+            }
+        }
+
+        //permitting user to only enter certain things in amount input
+        document.getElementById("amount").addEventListener("keydown", (event) => {
+            if ((event.key >= "0" && event.key <= "9") || event.key == "." || event.key == "Backspace"
+                || event.key == "ArrowLeft" || event.key == "ArrowRight" || event.key == "Tab") {
+                return event;
+            }
+            else {
+                event.preventDefault();
+            }
+        });
+        //limits amount filed to only be a decimal with 2 places to right of .
+        function roundAmount(){
+            let temp = document.getElementById("amount").value;
+            temp = Math.round(temp * 100)/100
+            //console.log(temp)
+            document.getElementById("amount").value = temp;
+        }
+
+        //code to enable submit button once all inputs of type text are filled
+        let d = document, [inputs, count] = [
+        d.querySelectorAll('[type="text"]'),
+        d.querySelector('#submit')]
+        count.disabled = true
+
+        for (i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener('input',() => {
+            let values = []
+            inputs.forEach(v => values.push(v.value))
+            count.disabled = values.includes('')
+        })
+        }
+    </script>
+{% endblock %}

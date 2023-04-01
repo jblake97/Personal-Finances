@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Redirect
+{% endblock %}
+
+{% block main %}
+    <form action="/login" method="get">
+        <h6>You have entered invalid or incorrect credentials.</h6>
+        <hr>
+        <p style="display:inline-block">Please click here to return to the login screen: </p>
+        <button class="btn btn-danger btn-sm" id="test" name="test" type="submit">Return to Log in</button>
+
+    </form>
+    <form action="/register" method="get">
+        <br>
+        <p style="display:inline-block">Please click here to return to the register screen: </p>
+        <button class="btn btn-danger btn-sm" id="test" name="test" type="submit">Return to Register</button>
+    </form>
+
+{% endblock %}
