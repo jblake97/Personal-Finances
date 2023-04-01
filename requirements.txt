@@ -1,3 +1,5 @@
 Flask
 Gunicorn
 Flask-Session
+Panda
+SQLite
