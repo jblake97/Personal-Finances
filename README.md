@@ -1,6 +1,5 @@
 # Personal Finances
 #### Video Demo: https://www.youtube.com/watch?v=3Mi4zCkyME0
-#### This was my CS50 Final Project and I hope you enjoy my explanation of such below
 
 <br>
 
