@@ -35,6 +35,7 @@ def execute_read_query(connection, query):
     try:
         cursor.execute(query)
         result = cursor.fetchall()
+        connection.commit()
         return result
     except Error as e:
         print(f"The error '{e}' occured")
