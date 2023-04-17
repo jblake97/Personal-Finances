@@ -36,6 +36,8 @@ def login():
             return render_template("redirect.html")
 
         #Connect to SQL database for use
+        #"pFinances.db"
+        #"postgresql://personal_finances_user:Ab3Sw3li20vMg5atsczLtPXDes3QL36R@dpg-cgupopo2qv28lbeg7ur0-a.ohio-postgres.render.com/personal_finances"
         connection = create_connection("pFinances.db")
 
         userSQL = ("SELECT * FROM users WHERE username = " + "'" + request.form.get("username") + "'")
