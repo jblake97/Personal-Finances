@@ -5,19 +5,28 @@
 {% endblock %}
 
 {% block main %}
-    <form action="/register" method="post">
-        <div class="mb-3">
-            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Username" type="text">
-        </div>
-        <div class="mb-3">
-            <input autocomplete="off" class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
-        </div>
-        <div class="mb-3">
-            <input autocomplete="off" class="form-control mx-auto w-auto" id="confirmation" name="confirmation" placeholder="Password" type="password">
-        </div>
-        <div class="mb-3">
-            <input autocomplete="off" class="form-control mx-auto w-auto" id="email" name="email" placeholder="E-mail address" type="text">
-        </div>
-        <button class="btn btn-primary" type="submit">Register Account</button>
-    </form>
+    <div class="mb-1 text-center">
+        <h6>Regiser Account Below</h6>
+        <p>Please enter the following fields to register an account.</p>
+        <p>An e-mail confirmation is not required. Your account is automatically confirmed.</p>
+        <form action="/register" method="post">
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Username" type="text">
+            </div>
+            <div class="mb-3">
+                <input autocomplete="off" class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
+            </div>
+            <div class="mb-3">
+                <input autocomplete="off" class="form-control mx-auto w-auto" id="confirmation" name="confirmation" placeholder="Repeat Password" type="password">
+            </div>
+            <div class="mb-3">
+                <input autocomplete="off" class="form-control mx-auto w-auto" id="email" name="email" placeholder="E-mail address" type="text">
+            </div>
+            <button class="btn btn-primary" type="submit">Register Account</button>
+        </form>
+    </div>
+    <br>
+    <div class="mb-1 text-center">
+        <p>Already have an account? <a href="/login">Click me</a></p>
+    </div>
 {% endblock %}

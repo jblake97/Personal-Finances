@@ -42,6 +42,12 @@
 {
     background-color: #9fdded;
 }
+h1
+{
+    font-family: Tahoma, sans-serif;
+    text-decoration: underline;
+    color:#4B4645;
+}
 h6
 {
     font-family: Tahoma, sans-serif;
@@ -51,9 +57,5 @@ h6
 label, input, p
 {
     font-family: Tahoma, sans-serif;
-    font-size: 0.9em;
-}
-footer
-{
-    background-color:lightgrey;
+    font-size: 1.1em;
 }

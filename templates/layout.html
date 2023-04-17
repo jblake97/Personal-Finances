@@ -24,10 +24,11 @@
                 <div class="collapse navbar-collapse" id="navbar">
                     {% if session["user_id"] %}
                         <ul class="navbar-nav ms-auto mt-2">
-                            <li class="nav-item"><a class="nav-link" href="/addVarCost">Add Spending</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/">Dashboard</a></li>
                             <li class="nav-item"><a class="nav-link" href="/addIncome">Add Income</a></li>
                             <li class="nav-item"><a class="nav-link" href="/addFixedCosts">Add Bills</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/customize">Payment Methods</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/addVarCost">Add Spending</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/customize">Edit Payment Methods</a></li>
                             <li class="nav-item"><a class="nav-link" href="/deleteData">Clear/Export Data</a></li>
                         </ul>
                         <ul class="navbar-nav ms-auto mt-2">
@@ -42,18 +43,15 @@
                 </div>
             </div>
         </nav>
-        <div>
-            Personal Finances App
-        </div>
-
-        <main class="container-fluid py-5 text-center">
+        <br>
+        <main class="container-fluid py-1 text-center">
             {% block main %}{% endblock %}
         </main>
 
         <br>
         <footer class="mb-5 small text-center text-muted">
             Product made by The Buns and Ori Inc.
-            <p>testing</p>
+            <hr>
         </footer>
 
     </body>
