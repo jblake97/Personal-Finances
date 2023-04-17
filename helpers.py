@@ -20,6 +20,7 @@ def login_required(f):
 # Connect to sqlite database
 def create_connection(path):
     connection = None
+    #postgresql://personal_finances_user:Ab3Sw3li20vMg5atsczLtPXDes3QL36R@dpg-cgupopo2qv28lbeg7ur0-a.ohio-postgres.render.com/personal_finances
     try:
         connection = sqlite3.connect(path)
         print("Connected successfully!")
